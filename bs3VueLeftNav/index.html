@@ -1,0 +1,354 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8" content="text/html" http-equiv="ContentType" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7, IE=9" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap mode</title>
+    <!-- 引入bootstrap样式表 -->
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7/css/bootstrap.css" />
+    <!-- 引入Jquery库 -->
+    <script type="text/javascript" src="jquery/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="jquery/jquery-migrate-3.0.0.js"></script>
+    <!--引入boostrap的js文件  -->
+    <script type="text/javascript" src="bootstrap-3.3.7/js/bootstrap.js"></script>
+    <script type="text/javascript" src="vueJS/vue.js"></script>
+
+    <style>
+        img {
+            height: 100%;
+            width: 100%;
+        }
+
+        img.icon {
+            width: 15px;
+            height: 15px;
+            position: relative;
+            bottom: 1.3px;
+            right: 5px;
+        }
+
+        /* 在使用glyphicon时右浮动 */
+        span.icon {
+            float: right;
+        }
+
+        /* 侧边栏的css */
+        .left-nav {
+            position: absolute;
+            height: 100%;
+            background: rgb(39, 49, 60);
+            top: 0;
+            width: 10%;
+            bottom: 0;
+            left: 0;
+            overflow: auto;
+
+        }
+
+        /* 去掉.row的margin-left和margin-right */
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        /* 未折叠侧边导航栏的主界面css */
+        .main {
+            position: absolute;
+            height: 100%;
+            left: 10%;
+            bottom: 0;
+            top: 0;
+            width: 90%;
+            background: ghostwhite;
+            /*  提供滑动效果 */
+            -webkit-transition: all .25s ease-out;
+            -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+        }
+
+        /* 折叠侧边导航栏后的主界面css */
+        .main-fluid {
+            position: absolute;
+            height: 100%;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            width: 100%;
+            background: ghostwhite;
+            /*  提供滑动效果 */
+            -webkit-transition: all .25s ease-out;
+            -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+        }
+
+        /* 主界面上沿的css */
+        .top-content {
+            height: 7%;
+            width: 100%;
+            background: white;
+        }
+
+        /* 主界面中间主要部分的css  */
+        .middle-content {
+            height: 93%;
+            width: 100%;
+        }
+
+        /*  左侧导航栏的导航菜单的css  */
+        ul.nv {
+            width: 100%;
+            display: block;
+            padding-inline-start: 0px;
+            text-align: center;
+        }
+
+        ul.nv>li {
+            width: 100%;
+            display: block;
+            list-style: none;
+        }
+
+        ul.nv>li>a {
+            width: 100%;
+            display: block;
+            height: 100%;
+            text-decoration: none;
+            padding: 18px 5px 15px 10px;
+            margin-bottom: -1px;
+            background: rgb(39, 49, 60);
+            border-top: 1px transparent #ddd;
+            color: rgb(118, 124, 131);
+        }
+
+        ul.nv>li>a:hover,
+        ul.nv>li>a:active,
+        ul.nv>li>a:focus {
+            transition: all 0.7s ease 0s;
+            -webkit-transition: all 0.7s ease 0s;
+            -moz-transition: all 0.7s ease 0s;
+            text-decoration: none;
+            background-color: rgb(52, 63, 75);
+            color: white;
+        }
+
+        /*  二级下拉菜单的css样式  */
+        ul.nv>li>ul {
+            padding-left: 0;
+        }
+
+        ul.nv>li>ul>li {
+            list-style: none;
+        }
+
+        ul.nv>li>ul>li>a {
+            color: rgb(118, 124, 131);
+            text-decoration: none;
+            display: block;
+            padding-top: 17px;
+            padding-bottom: 17px;
+        }
+
+        ul.nv>li>ul>li>a:hover {
+            transition: all 0.7s ease 0s;
+            -webkit-transition: all 0.7s ease 0s;
+            -moz-transition: all 0.7s ease 0s;
+            background-color: rgb(39, 49, 60);
+            color: white;
+            text-decoration: none;
+        }
+
+        /*  用于手机或更小屏幕的适配 */
+        @media screen and (max-width:768px) {
+            .left-nav {
+                position: absolute;
+                height: 100%;
+                background: rgb(39, 49, 60);
+                top: 0;
+                width: 28%;
+                bottom: 0;
+                left: 0;
+            }
+
+            .main {
+                position: absolute;
+                height: 100%;
+                left: 28%;
+                bottom: 0;
+                top: 0;
+                width: 72%;
+                background: ghostwhite;
+
+            }
+
+            .main-fluid {
+                position: absolute;
+                height: 100%;
+                left: 0;
+                bottom: 0;
+                top: 0;
+                width: 100%;
+                background: ghostwhite;
+
+            }
+
+            .top-content {
+                height: 10%;
+                width: 100%;
+                background: white;
+            }
+
+            .middle-content {
+                height: 90%;
+                width: 100%;
+            }
+
+            img.icon {
+                width: 12px;
+                height: 12px;
+                position: relative;
+                bottom: 1.3px;
+                right: 2px;
+            }
+
+            .title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="container-fluid">
+        <div class="left-nav">
+            <div class="row">
+                <ul class="nav nav-pills nav-stacked nv">
+                    <li is="left-nav" v-for="(item, index) in ulInfos" :key="index" :info="item" :index="index"
+                        :sub-title="item.subTitle"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main" :class="{main:!isToggle,'main-fluid':isToggle}">
+            <div class="top-content">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-8 col-xs-10">
+                        <h3 class="title" @click="toggleOption">
+                            bootstrap3 based vue leftNav Component
+                        </h3>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-4 col-xs-2">
+                    </div>
+                </div>
+            </div>
+            <div class="middle-content">
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    Vue.component("left-nav", {
+        props: {
+            info: Object,
+            index: Number,
+            "sub-title": Array
+        },
+        data: function () {
+            return {
+                isCollapsed: false
+            }
+        },
+        template: `
+        <li class="collapsed" data-toggle="collapse" :data-target="info.subMenuId">
+            <a href="#" @click="isCollapsed=!isCollapsed">
+                <img class="icon" :src="info.source" />
+                {{info.title}}
+                <span class="glyphicon icon"
+                    :class="{'glyphicon-plus':!isCollapsed,'glyphicon-minus':isCollapsed}">
+                </span>
+            </a>
+            <ul class="collapse" :id="info.subMenuId.replace('#','')">
+                <li v-for="(item,index) in subTitle" :key="index">
+                    <a :href="item.href">{{item.title}}</a>
+                </li>
+            </ul>
+        </li>
+        `
+    });
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            // 判断是否折叠，默认不折叠
+            isToggle: false,
+            ulInfos: [{
+                    // 下拉母菜单的标题
+                    title: "任务管理",
+                    // 子下拉菜单的id
+                    subMenuId: "#ulMenu0",
+                    // 图标的地址
+                    source: "icons/icon5.png",
+                    // 子菜单的信息数组
+                    subTitle: [{
+                        // 子菜单的标题
+                        title: "货物信息",
+                        // 子菜单的链宿
+                        href: "#"
+                    }, {
+                        title: "厂家信息",
+                        href: "#"
+                    }]
+                },
+                {
+                    title: "客户管理",
+                    subMenuId: "#ulMenu1",
+                    source: "icons/icon6.png",
+                    subTitle: [{
+                        title: "货物信息",
+                        href: "#"
+                    }, {
+                        title: "厂家信息",
+                        href: "#"
+                    }]
+                },
+                {
+                    title: "账户管理",
+                    subMenuId: "#ulMenu2",
+                    source: "icons/icon7.png",
+                    subTitle: [{
+                        title: "货物信息",
+                        href: "#"
+                    }, {
+                        title: "厂家信息",
+                        href: "#"
+                    }]
+                },
+                {
+                    title: "模版管理",
+                    subMenuId: "#ulMenu3",
+                    source: "icons/icon8.png",
+                    subTitle: [{
+                        title: "货物信息",
+                        href: "#"
+                    }, {
+                        title: "厂家信息",
+                        href: "#"
+                    }]
+                }
+            ],
+        },
+        methods: {
+            toggleOption: function () {
+                this.isToggle = !this.isToggle;
+                if (this.isToggle) {
+                    $(".left-nav").fadeOut();
+                } else {
+                    $(".left-nav").fadeIn();
+
+                }
+            }
+        },
+    });
+</script>
+
+</html>
